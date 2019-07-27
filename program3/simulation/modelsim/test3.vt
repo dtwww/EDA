@@ -1,0 +1,93 @@
+
+`timescale 1 us/ 1 ns
+module test3_vlg_tst();
+
+	reg clk;
+	//wire div_clk;
+	reg reset;
+	reg signal;
+	wire [7:0] data_code;
+	wire success;
+	integer i;
+	parameter PERIOD = 0.02;
+									
+	test3 i1 (
+		.clk(clk),
+		.signal(signal),
+		.reset(reset),
+		.data_code(data_code),
+		.success(success)
+	);
+
+	initial                                                
+	begin                                                  
+		clk = 0;
+		signal = 1;
+		reset = 0;
+		i = 0;
+		#(15000*PERIOD) reset = 1;
+		#70000 $finish;														 
+		$display("Running testbench");                       
+	end          
+	always #(PERIOD/2) clk = ~clk;
+	always                                                               
+	begin                                                  
+		#(30000*PERIOD) signal = ~signal;
+		//引导码
+		#9000 signal = ~signal;
+		#4500 signal = ~signal;
+				
+		//地址码
+		for(i=0;i<8;i=i+1)
+			begin
+				#560 signal = ~signal;
+				#565 signal = ~signal;
+			end
+		//地址反码
+		for(i=0;i<8;i=i+1)
+			begin
+				#560 signal = ~signal;
+				#1690 signal = ~signal;
+			end
+		
+		//数据码
+		#560 signal = ~signal;
+		#1690 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;		
+		#560 signal = ~signal;
+		#1690 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;
+		#560 signal = ~signal;
+		#1690 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;	
+		
+		//数据反码
+		#560 signal = ~signal;
+		#565 signal = ~signal;
+		#560 signal = ~signal;
+		#1690 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;
+		#560 signal = ~signal;
+		#1690 signal = ~signal;
+		#560 signal = ~signal;
+		#565 signal = ~signal;
+		#560 signal = ~signal;
+		#1690 signal = ~signal;
+		#560 signal = ~signal;
+		#1690 signal = ~signal;	
+		#560 signal = ~signal;
+		#1690 signal = ~signal;	
+		
+		signal = ~signal;
+	end            
+	initial $monitor($time,,,"%b %b",success,data_code[7:0]);
+endmodule
+

@@ -1,0 +1,57 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "data_code[0]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[1]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[2]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[3]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[4]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[5]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[6]",
+					"strict" : false
+				},
+				{
+					"name" : "data_code[7]",
+					"strict" : false
+				},
+				{
+					"name" : "success",
+					"strict" : false
+				},
+				{
+					"name" : "signal",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

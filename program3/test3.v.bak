@@ -1,0 +1,28 @@
+module test3(div_clk,signal,reset,irq_up,irq_down)
+	input div_clk;
+	input signal;
+	input reset;
+	output result;
+	
+	reg [1:0] irq_tmp;  
+   wire irq_up;  
+   wire irq_down;  
+      
+   //捕捉红外信号的上下沿
+   always @(negedge div_clk or negedge reset)  
+   begin  
+       if (!reset)  
+       begin  
+           irq_tmp <= 2'd0;  
+       end  
+       else  
+       begin  
+           irq_tmp[0] <= signal;  
+           irq_tmp[1] <= irq_tmp[0];  
+       end  
+   end  
+  
+   assign irq_up = ~irq_tmp[1] & irq_tmp[0];   //上升沿为1  
+   assign irq_down = irq_tmp[1] & ~irq_tmp[0]; //下降沿为1 
+	
+endmodule 

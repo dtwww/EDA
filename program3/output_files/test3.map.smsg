@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at test3.v(71): always construct contains both blocking and non-blocking assignments File: F:/hit/eda/program3/test3.v Line: 71
+Info (10281): Verilog HDL Declaration information at test3.v(11): object "success" differs only in case from object "SUCCESS" in the same scope File: F:/hit/eda/program3/test3.v Line: 11
